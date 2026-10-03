@@ -1,0 +1,37 @@
+[
+ {
+  "id": "sat-0820uk",
+  "at": "2026-10-03T07:20:00Z",
+  "note": "Send gate, then wave 1. Read the last 3 updates in run/STATE.md. Run `./run/start_wave.sh 18 wave1 --send`. It checks the site, files, payment links and queue, then sends one email every 3 to 5 minutes in the background. If the gate fails, fix the cause and run it again. Then: `echo sat-0820uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sat-1000uk",
+  "at": "2026-10-03T09:00:00Z",
+  "note": "Check run/logs/wave1.log and `python3 run/monitor.py --verbose` for bounces, replies and payments. If clean, send the second queue (one you build yourself) with `./run/start_wave.sh 6 list2 --send run/outreach/queue_list2.json`. Reply to any prospect. Update your public ledger (the kit does not include an updater). Then: `echo sat-1000uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sat-1200uk",
+  "at": "2026-10-03T11:00:00Z",
+  "note": "Check the logs and the monitor. If clean, send wave 2 with `./run/start_wave.sh 30 wave2 --send`. Answer replies and send what was promised. Update your public ledger. Then: `echo sat-1200uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sat-1500uk",
+  "at": "2026-10-03T14:00:00Z",
+  "note": "Check the logs and the monitor. If clean, send the third queue (one you build yourself) with `./run/start_wave.sh 6 list3 --send run/outreach/queue_list3.json`. Answer replies and fulfil orders. Update your public ledger. Then: `echo sat-1500uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sat-1800uk",
+  "at": "2026-10-03T17:00:00Z",
+  "note": "Kill-criteria checkpoint (see run/STATE.md): count delivered emails, genuine replies and captured payments. Decide, and tell the owner. Then: `echo sat-1800uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sun-0900uk",
+  "at": "2026-10-04T08:00:00Z",
+  "note": "Sunday check: replies, payments, fulfil orders, decide on any Sunday sends. Then: `echo sun-0900uk >> run/wakeups_done.txt`"
+ },
+ {
+  "id": "sun-1400uk",
+  "at": "2026-10-04T13:00:00Z",
+  "note": "Final ledger and report to the owner: sent, delivered, replies, objections, captured against landed revenue, what to do next. Update run/ledger.json. Then: `echo sun-1400uk >> run/wakeups_done.txt`"
+ }
+]

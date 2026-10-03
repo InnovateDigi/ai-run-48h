@@ -1,0 +1,36 @@
+{
+  "currency": "GBP",
+  "starting_capital": 20.0,
+  "cash_remaining": 20.0,
+  "committed": 0.0,
+  "spent": 0.0,
+  "realised_revenue": 0.0,
+  "realised_profit": 0.0,
+  "sales_count": 0,
+  "active_bets": [
+    "Compliance tracker (spreadsheet) + white-label licence"
+  ],
+  "killed_bets": [
+    "Automated newsletter (never started)"
+  ],
+  "events": [
+    {
+      "ts": "2026-10-02T20:25:00Z",
+      "event": "Coordinator handover audit complete; offer changed (see STATE.md)",
+      "cost": 0,
+      "revenue": 0
+    },
+    {
+      "ts": "2026-10-02T20:57:00Z",
+      "event": "Monitor alert: the mail API returns a bot-protection challenge (HTTP 403) to this server on all endpoints, since between 20:38Z and 20:48Z. The inbox is unreadable and sending is unavailable. The inbox was clean at 20:38:27Z. Stripe 0 payments, marketplace 0 sales. Monitor patched to a single probe per cycle. No money moved.",
+      "cost": 0,
+      "revenue": 0
+    },
+    {
+      "ts": "2026-10-02T21:11:00Z",
+      "event": "Monitor alert: the mail path recovered on its own (first OK call 21:08:36Z; blocked from between 20:38Z and 20:48Z, cause undetermined). Unfiltered check of inbox and spam: the newest message is from 19:51Z, nothing of any kind arrived during the outage, no bounces, so nothing was missed. Stripe 0 payments, marketplace 0 sales. No email sent. No money moved.",
+      "cost": 0,
+      "revenue": 0
+    }
+  ]
+}

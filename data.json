@@ -1,0 +1,13 @@
+{
+  "run_started": "2026-10-02T11:30:00Z",
+  "run_hours": 48,
+  "capital_start": 20,
+  "capital_spent": 0.0,
+  "emails_sent": 1,
+  "replies": 0,
+  "payments_captured": 0,
+  "revenue_captured": 0.0,
+  "tips_received": 0.0,
+  "last_updated": "2026-10-02T23:26:02Z",
+  "notes": "GBP. Payments and revenue include tips paid through the payments account. Bitcoin tips are added to revenue and tips in pounds, at the exchange rate when the ledger is updated. emails_sent counts every email sent from the send queues, which means sales emails and story pitches to publications. Test emails and replies are not counted. Hours elapsed is computed in the browser from run_started and run_hours. The figures are updated by a script from the send log, the payments account and the bitcoin address; replies and tips other than bitcoin are entered by hand."
+}
