@@ -1,6 +1,6 @@
-# Fifteen lessons from a 48-hour AI-agent revenue run
+# Seventeen lessons from a 48-hour AI-agent revenue run
 
-These come from the run's own state file, not from theory. Each lesson says what happened and what to do about it. Every number is from the run's records. The kit is a snapshot of the run as at about 23:30 UK on Friday 2 October 2026. The run was still live then, so none of this is a claim that the approach pays.
+These come from the run's own state file, not from theory. Each lesson says what happened and what to do about it. Every number is from the run's records. The kit is a snapshot of the run as at about 23:30 UK on Friday 2 October 2026. The run was still live then, so none of this is a claim that the approach pays. Lessons 16 and 17 and the note under lesson 6 were added on Saturday 3 October, after the first planned wave. The scripts in the kit were not changed.
 
 ## 1. Audit what you inherit before you build on it
 **What happened.** A product marked live was inherited. The audit found that it delivered no file. The landing page carried two fabricated testimonials. The headline feature tracked a law abolished on 1 May 2026. The previous coordinator had sent no outreach emails.
@@ -25,6 +25,7 @@ These come from the run's own state file, not from theory. Each lesson says what
 ## 6. Measure deliverability before the first send
 **What happened.** SPF and DKIM were checked, a test email scored 10/10 on a public scoring site, and the missing DMARC record was noted. The mailbox was on a free plan whose policy forbids bulk mail. So the plan was about 60 emails a day at first, later capped at about 80 across all queues, one every 3 to 5 minutes.
 **Do this.** Test with a scoring site before any outreach. Read the mailbox plan's terms. Keep the volume to what the mailbox's reputation can carry, and send in stages with a bounce check between waves.
+**Added on Saturday 3 October.** This was not enough. The provider restricted the mailbox after ten emails. See lesson 16.
 
 ## 7. Check dates and law against primary sources
 **What happened.** The product's headline feature was obsolete. The new hook came from draft regulations on the government's legislation site, and the sheet that depends on them carries a DRAFT banner.
@@ -61,3 +62,11 @@ These come from the run's own state file, not from theory. Each lesson says what
 ## 15. Say what you did not test
 **What happened.** The workbook was verified in LibreOffice, and later with a second engine, but not in real Excel or Google Sheets. The sender had been dry-run, used for one test email and, by mistake, for one real email. It had not yet sent a planned campaign when this kit was packed. The spam-scoring test was good, but DMARC was still missing. The scripts in this kit were adapted for publication and tested offline, not against the live services.
 **Do this.** Name the untested paths in the state file and in the customer-facing text. A known gap you have written down is a to-do. An unknown one is a surprise.
+
+## 16. Read the provider's rule on the kind of email, not only on the volume
+**What happened.** Wave 1 started at 08:25 UK on Saturday. Ten emails left the mailbox in 41 minutes, three to six minutes apart. From about 09:10 the mail provider refused the run's email to outside addresses with "550 5.4.6 Unusual sending activity detected". Its usage policy says the mailbox service cannot be used for bulk email in categories that include promotional, marketing, automated and transactional email, and it names a large number of emails in a short period as unusual activity. Lesson 6 had treated that as a limit on volume and planned 60 to 80 emails a day. The provider acted after ten. The coordinator stopped all outreach from the mailbox for the rest of the run. It did not move the queue to another mailbox, a relay or contact forms. The policy says the account's own administrator cannot lift a block when the activity looks very suspicious, and the same mailbox carried the replies and the account notices.
+**Do this.** Before you build a queue, read the mail provider's usage policy and ask one question: does it allow this kind of email at all? If the answer is no, a slow pace does not fix it. Use a service whose terms allow what you plan to send, or do not send. Keep the mailbox that receives replies apart from the channel that sends outreach, so that a restriction on one does not silence the other.
+
+## 17. A wrapper's "success" is not the provider's
+**What happened.** The sender logged a send as OK when the mail API answered `"successful": true`. On Saturday the API gave that answer for five emails that the mail provider had refused. The refusal sat one level down in the same answer: a status code of 500, the provider's reason and no message id. The log showed 15 sends. Ten had gone out. The error surfaced only when a bounce arrived and the coordinator compared the Sent folder with the log. The run's own sender was fixed that morning. `run/mailer.py` in this kit was not: it still tests the top-level flag only.
+**Do this.** Count a send only when the provider itself confirms it, with its own status code and a message id. After every wave, compare the provider's Sent folder with your log in both directions. Lesson 11 covers a send that went out and was logged as failed. This is the opposite case.

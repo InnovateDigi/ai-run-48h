@@ -4,11 +4,13 @@ Adapted copies of the real working files from a 48-hour experiment. An AI agent 
 
 **Read this first.** The kit is a snapshot of the run as at about 23:30 UK on Friday 2 October 2026. At that point the run had earned £0 and the planned outreach had not started. The sender had been dry-run, used for one spam-checker test and, by mistake, for one real email (see lesson 5 in `LESSONS.md`). Nothing here promises a result. The live ledger page shows how the run is going.
 
+**Added on Saturday 3 October.** The first planned wave went out that morning. The mail provider restricted the mailbox after ten emails, and the sender logged five refused emails as sent. Lessons 16 and 17 in `LESSONS.md` say what happened. The scripts here are still the Friday snapshot and were not changed, so read "Known limits" before you use `run/mailer.py`.
+
 ## What is inside
 
 | File | What it is |
 | --- | --- |
-| `LESSONS.md` | Fifteen concrete lessons from the run. Start here. |
+| `LESSONS.md` | Seventeen concrete lessons from the run. Start here. |
 | `STATE_example.md` | An abridged, sanitised copy of the state file the coordinator re-read every turn. Shows verified facts, decisions, rules, dated updates and handover notes. Some updates are left out. |
 | `ledger_example.json` | The money ledger: capital, spend, revenue, bets and dated events. |
 | `.env.local.example` | The environment file the scripts read. Copy it to `.env.local` and fill it in. Plain `KEY=value` lines work for the shell and for the Python scripts. |
@@ -55,6 +57,8 @@ The email wording in `build_agent_queue.py` and `build_partner_queue.py` is gene
 
 ## Known limits
 
+- **The mailbox service the run used restricted this use.** Zoho Mail's usage policy says the service cannot be used for bulk email in categories that include promotional, marketing, automated and transactional email. It restricted the run's mailbox after ten outreach emails in 41 minutes (lesson 16). Do not use `mailer.py` for outreach through a Zoho Mail mailbox. Whatever service you use, read its terms first.
+- **`mailer.py` can log a refused send as OK.** It takes the top-level `successful` flag in the mail API's answer as proof that the email went. Composio returned that flag as true while Zoho was refusing the message. The refusal was inside the same answer: `data.status.code` was not 200, the reason was in `data.data.moreInfo` and there was no `messageId`. The run's own sender now requires status 200 and a message id. This snapshot does not. Fix that before a real send, and compare the Sent folder with `sent_log.jsonl` after every wave (lesson 17). `monitor.py` has the same blind spot when it lists a folder: a refused request looks like an empty folder.
 - **Tested offline only.** The changes made for the kit were tested with a stub `curl`, a stub sender and synthetic files. Nothing was run against the mail, payments or hosting services.
 - **The download page is unlisted, not protected.** `deploy_site.py` puts the files in your Pages repository under a long random folder name. That hides them. It does not guard them. In a public repository anyone can browse them, and anyone who learns the address can download them.
 - **The gate does not read the mailbox.** The run also required `monitor.py` to show `"mail_readable": true` before a send (see `STATE_example.md`, 21:57 update). `start_wave.sh` does not check that. Run the monitor first.
@@ -66,7 +70,7 @@ The email wording in `build_agent_queue.py` and `build_partner_queue.py` is gene
 - Sales emails go to businesses (Ltd or LLP preferred), never to private individuals, and only to addresses the business publishes on its own website.
 - Every sales email carries a disclaimer and a one-word opt-out, and the suppression list is honoured. The run's story pitches to publications are a separate lane. They carry no opt-out line, so the kit's gate, which checks every queued email, would refuse them.
 - Specialists never contact anyone. Only the coordinator sends.
-- Volume is staged and low. Wave 1 is 18 emails, 200 to 330 seconds apart, with a bounce check before more.
+- Volume is staged and low. Wave 1 is 18 emails, 200 to 330 seconds apart, with a bounce check before more. On Saturday the mail provider stopped the wave after ten (lesson 16).
 - No evading bot protection. If a service blocks you, back off and use a legitimate second route.
 - Check the email-marketing rules that apply where you and your recipients are. This kit is not legal advice.
 

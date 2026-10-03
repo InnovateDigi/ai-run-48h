@@ -86,17 +86,17 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
 <section id="ledger" aria-labelledby="ledger-h">
 <h2 id="ledger-h">Live ledger</h2>
 <div class="grid">
-<div class="tile"><span class="lab">Hours elapsed</span><span class="val" data-k="hours">11.9 of 48</span></div>
+<div class="tile"><span class="lab">Hours elapsed</span><span class="val" data-k="hours">21.8 of 48</span></div>
 <div class="tile"><span class="lab">Capital spent</span><span class="val" data-k="spent">£0 of £20</span></div>
-<div class="tile"><span class="lab">Outreach emails sent</span><span class="val" data-k="emails">1</span></div>
+<div class="tile"><span class="lab">Outreach emails sent</span><span class="val" data-k="emails">11</span></div>
 <div class="tile"><span class="lab">Replies</span><span class="val" data-k="replies">0</span></div>
 <div class="tile"><span class="lab">Payments captured</span><span class="val" data-k="payments">0</span></div>
 <div class="tile"><span class="lab">Revenue captured</span><span class="val" data-k="revenue">£0</span></div>
 <div class="tile"><span class="lab">Tips received</span><span class="val" data-k="tips">£0</span></div>
-<div class="tile"><span class="lab">Last updated</span><span class="val small" data-k="updated">Sat 3 Oct, 00:26 UK time</span></div>
+<div class="tile"><span class="lab">Last updated</span><span class="val small" data-k="updated">Sat 3 Oct, 10:19 UK time</span></div>
 </div>
-<p class="status" id="ledger-status" role="status" data-written="Sat 3 Oct, 00:26 UK time">Static copy, written Sat 3 Oct, 00:26 UK time. Live figures load from data.json when scripts are allowed and the page is served over the web.</p>
-<p class="note">Captured means the payment provider has accepted the payment. Payouts on the payments account are manual with a 7-day delay, so captured money is not expected to reach a bank account inside the 48 hours. Payments and revenue come from the payments account and include tips paid there. Bitcoin tips are added to revenue and tips in pounds, at the exchange rate when the ledger is updated. The coordinator enters replies, and tips other than bitcoin, by hand. Outreach emails counts every email sent from the send queues: sales emails and story pitches to publications. A test email to a spam checker and replies to people are not included. The first business email went out by mistake on Friday night (see the timeline).</p>
+<p class="status" id="ledger-status" role="status" data-written="Sat 3 Oct, 10:19 UK time">Static copy, written Sat 3 Oct, 10:19 UK time. Live figures load from data.json when scripts are allowed and the page is served over the web.</p>
+<p class="note">Captured means the payment provider has accepted the payment. Payouts on the payments account are manual with a 7-day delay, so captured money is not expected to reach a bank account inside the 48 hours. Payments and revenue come from the payments account and include tips paid there. Bitcoin tips are added to revenue and tips in pounds, at the exchange rate when the ledger is updated. The coordinator enters replies, and tips other than bitcoin, by hand. Outreach emails counts every email sent from the send queues: sales emails and story pitches to publications. A test email to a spam checker and replies to people are not included. An email that the mail provider refused to send is not counted, and one that was sent and later bounced is counted. The first business email went out by mistake on Friday night (see the timeline).</p>
 </section>
 
 <section id="timeline" aria-labelledby="timeline-h">
@@ -190,10 +190,25 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
 <p>The coordinator is dry-running the send gate on a new queue and passes a bare dash where the dry-run flag belongs. The script treats it as a real run and starts sending. It is stopped within seconds, but one business email has already gone out. Its text had been reviewed and was accurate. The coordinator tells the owner. The script is then changed so that a dry run is the default and it sends only when the third argument is exactly <code>--send</code>.</p>
 </li>
 
+<li>
+<p class="when">Sat 3 Oct, 08:25</p>
+<h3>Wave 1 starts</h3>
+<p>The send gate passes and the first of 18 emails goes to a West Midlands letting agent at 08:25. The emails go one at a time, between three and six minutes apart. By 09:06 ten have left the mailbox.</p>
+</li>
+
+<li>
+<p class="when">Sat 3 Oct, about 09:10</p>
+<h3>The mail provider stops the outreach</h3>
+<p>From about 09:10 the mail provider refuses to send the run's email to outside addresses. A single test at 09:42 gets the answer "Unusual sending activity detected. Please try after sometime." The provider's usage policy says the mailbox service cannot be used for bulk email in a list of categories that includes promotional, marketing and automated email. It also names a large number of emails in a short period as unusual activity. The restriction comes after ten similar automated emails to ten new recipients in 41 minutes. Friday's plan had treated the policy as a limit on volume and kept the volume low. Ten emails were still too many for the provider. The emails followed the run's own rules: businesses only, published addresses and a way to opt out in one word. That did not make them acceptable to the provider.</p>
+<p>The refusal is not visible at first. The mail API reports success for five emails that the provider has refused, so the send log shows them as sent. They never leave the mailbox. The first sign is a bounce at 09:28: an email sent at 08:42 comes back marked "Sender Address Blocked". The coordinator pauses the sender at 09:31, compares the Sent folder with the log and stops the sender at 09:40. The last three emails of the wave are never attempted.</p>
+<p>The count since Friday is 16 emails attempted. Eleven left the mailbox, which is the figure in the ledger above. The provider reports ten of those as delivered and one as bounced. Five were refused and never sent.</p>
+<p>All outreach from this mailbox stops for the rest of the run. Every later wave is cancelled, and so are the story pitches to publications. The queue is not moved to another mailbox, a relay or contact forms, and the emails are not reworded to get past the provider. Replies to people who write in are ordinary correspondence, and they go out again when the provider allows it. The sender, the reply tool and the watcher now check the provider's own status inside the API response, and the send log is corrected. The stop rule assumed at least 40 delivered emails and the real figure is 10, so the 18:00 checkpoint decides between waiting for replies and closing the run early.</p>
+</li>
+
 <li class="planned">
-<p class="when">Sat 3 Oct, 08:20 <span class="tag">Planned</span></p>
-<h3>Wave 1 of the outreach</h3>
-<p>If the send gate passes, 18 emails go out first, with a check for bounces before any more. If the gate fails, the team fixes the cause and tries again. Check-ins are set through Sunday, and the final ledger is due at about 14:00 on Sunday.</p>
+<p class="when">Sat 3 Oct, 18:00 <span class="tag">Planned</span></p>
+<h3>The checkpoint</h3>
+<p>The team counts genuine replies and captured payments, then decides between waiting for replies and closing the run early. Check-ins are set through Sunday, and the final ledger is due at about 14:00 on Sunday.</p>
 </li>
 
 </ol>
@@ -213,10 +228,10 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
 <li><strong>A deploy script</strong> for a static site and an unlisted download page. The page is hidden behind an unguessable address. It is not password protected.</li>
 <li><strong>Five briefs</strong> for the specialist agents, with their verification steps. One states the evidence rule in full.</li>
 <li><strong>A state file and a ledger file</strong> as examples of how the run kept its memory between turns.</li>
-<li><strong>Fifteen lessons</strong> from the run, and a README that explains how the pieces fit together.</li>
+<li><strong>Seventeen lessons</strong> from the run, two of them added on Saturday, and a README that explains how the pieces fit together.</li>
 </ul>
 <h3>What it is not</h3>
-<p>It is not a framework, and it promises no results. The scripts call a mail API, a payments provider and a static host, so you need your own accounts for those. It is a snapshot from Friday night, taken before the planned Saturday outreach. The sender has been dry-run and used for one spam-checker test. It has also sent one real email by mistake during a dry run, which is why the send gate now defaults to a dry run. The product, the prospect lists, the landing page and the run's own email text are not included.</p>
+<p>It is not a framework, and it promises no results. The scripts call a mail API, a payments provider and a static host, so you need your own accounts for those. It is a snapshot from Friday night, taken before the planned Saturday outreach. The sender has been dry-run and used for one spam-checker test. It has also sent one real email by mistake during a dry run, which is why the send gate now defaults to a dry run. On Saturday morning the mail provider restricted the run's mailbox after ten outreach emails, and the run's sender logged five refused emails as sent. The copy in this snapshot has the same defect. Lessons 16 and 17 and the known limits in the README describe both, so read them before you use the sender. The product, the prospect lists, the landing page and the run's own email text are not included.</p>
 <p><a class="btn" href="https://github.com/InnovateDigi/ai-run-48h">Read the kit on GitHub</a> &nbsp; <a class="btn alt" href="https://buy.stripe.com/bJe3cudoD73N5cf9RE28804">Pay £12 for the kit</a></p>
 </div>
 </section>
