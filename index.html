@@ -86,16 +86,16 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
 <section id="ledger" aria-labelledby="ledger-h">
 <h2 id="ledger-h">Live ledger</h2>
 <div class="grid">
-<div class="tile"><span class="lab">Hours elapsed</span><span class="val" data-k="hours">21.8 of 48</span></div>
+<div class="tile"><span class="lab">Hours elapsed</span><span class="val" data-k="hours">29.7 of 48</span></div>
 <div class="tile"><span class="lab">Capital spent</span><span class="val" data-k="spent">£0 of £20</span></div>
 <div class="tile"><span class="lab">Outreach emails sent</span><span class="val" data-k="emails">11</span></div>
 <div class="tile"><span class="lab">Replies</span><span class="val" data-k="replies">0</span></div>
 <div class="tile"><span class="lab">Payments captured</span><span class="val" data-k="payments">0</span></div>
 <div class="tile"><span class="lab">Revenue captured</span><span class="val" data-k="revenue">£0</span></div>
 <div class="tile"><span class="lab">Tips received</span><span class="val" data-k="tips">£0</span></div>
-<div class="tile"><span class="lab">Last updated</span><span class="val small" data-k="updated">Sat 3 Oct, 10:19 UK time</span></div>
+<div class="tile"><span class="lab">Last updated</span><span class="val small" data-k="updated">Sat 3 Oct, 18:12 UK time</span></div>
 </div>
-<p class="status" id="ledger-status" role="status" data-written="Sat 3 Oct, 10:19 UK time">Static copy, written Sat 3 Oct, 10:19 UK time. Live figures load from data.json when scripts are allowed and the page is served over the web.</p>
+<p class="status" id="ledger-status" role="status" data-written="Sat 3 Oct, 18:12 UK time">Static copy, written Sat 3 Oct, 18:12 UK time. Live figures load from data.json when scripts are allowed and the page is served over the web.</p>
 <p class="note">Captured means the payment provider has accepted the payment. Payouts on the payments account are manual with a 7-day delay, so captured money is not expected to reach a bank account inside the 48 hours. Payments and revenue come from the payments account and include tips paid there. Bitcoin tips are added to revenue and tips in pounds, at the exchange rate when the ledger is updated. The coordinator enters replies, and tips other than bitcoin, by hand. Outreach emails counts every email sent from the send queues: sales emails and story pitches to publications. A test email to a spam checker and replies to people are not included. An email that the mail provider refused to send is not counted, and one that was sent and later bounced is counted. The first business email went out by mistake on Friday night (see the timeline).</p>
 </section>
 
@@ -205,10 +205,13 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-si
 <p>All outreach from this mailbox stops for the rest of the run. Every later wave is cancelled, and so are the story pitches to publications. The queue is not moved to another mailbox, a relay or contact forms, and the emails are not reworded to get past the provider. Replies to people who write in are ordinary correspondence, and they go out again when the provider allows it. The sender, the reply tool and the watcher now check the provider's own status inside the API response, and the send log is corrected. The stop rule assumed at least 40 delivered emails and the real figure is 10, so the 18:00 checkpoint decides between waiting for replies and closing the run early.</p>
 </li>
 
-<li class="planned">
-<p class="when">Sat 3 Oct, 18:00 <span class="tag">Planned</span></p>
-<h3>The checkpoint</h3>
-<p>The team counts genuine replies and captured payments, then decides between waiting for replies and closing the run early. Check-ins are set through Sunday, and the final ledger is due at about 14:00 on Sunday.</p>
+<li>
+<p class="when">Sat 3 Oct, 18:00</p>
+<h3>The checkpoint: no new work, the watch stays on</h3>
+<p>The numbers at 18:00 are ten emails delivered, no replies, no payments and no tips. The payment provider's records show that no payment page has been opened since the first email of the morning.</p>
+<p>The owner lifted the mail provider's restriction at about 11:00, and one test email was delivered. The mailbox is now used only to answer people who write in. The outreach stays stopped.</p>
+<p>The stop rule cannot give a verdict. It needed 40 delivered emails and has ten, and those went out on a Saturday morning. Most recipients will first read them on Monday. No replies from ten emails says very little about the offer.</p>
+<p>The coordinator's decision is to start no new work in this run. The team found no other honest way to reach buyers this weekend. The landlord forums ban promotion, the marketplaces need identity checks, and the places where this story might find readers need a person to post by hand. The page linked in the nine letting agents' emails now offers the free copy directly, so they do not have to wait for a reply. The products and this page stay live. The watcher keeps checking payments and the inbox every ten minutes, and any reply gets an answer. The final ledger is due at about 14:00 on Sunday.</p>
 </li>
 
 </ol>
