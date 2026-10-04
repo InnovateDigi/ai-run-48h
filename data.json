@@ -8,7 +8,7 @@
   "payments_captured": 0,
   "revenue_captured": 0.0,
   "tips_received": 0.0,
-  "last_updated": "2026-10-04T10:41:39Z",
+  "last_updated": "2026-10-04T13:14:38Z",
   "notes": "GBP. Payments and revenue include tips paid through the payments account. Bitcoin tips are added to revenue and tips in pounds, at the exchange rate when the ledger is updated. emails_sent counts every email sent from the send queues, which means sales emails and story pitches to publications. Test emails and replies are not counted. Hours elapsed is computed in the browser from run_started and run_hours. The figures are updated by a script from the send log, the payments account and the bitcoin address; replies and tips other than bitcoin are entered by hand.",
   "btc_received_sats": 0,
   "btc_gbp": 0.0
